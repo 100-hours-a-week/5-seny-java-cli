@@ -6,8 +6,27 @@ public class Welcome {
     private int input; // 사용자 입력을 저장할 변수 선언
     private String[] welcomeMenu = {"콤보 주문", "팝콘 주문", "음료 주문", "스낵 주문"}; // 배열저장은 {} 안에
 
+    // ANSI escape codes for colors
+    public static final String RESET = "\u001B[0m";
+    public static final String BLACK = "\u001B[30m";
+    public static final String RED = "\u001B[31m";
+    public static final String GREEN = "\u001B[32m";
+    public static final String YELLOW = "\u001B[33m";
+    public static final String BLUE = "\u001B[34m";
+    public static final String PURPLE = "\u001B[35m";
+    public static final String CYAN = "\u001B[36m";
+    public static final String WHITE = "\u001B[37m";
+
     public int run() {
         Scanner scanner = new Scanner(System.in);
+
+        // 화려한 시작 화면
+        System.out.println(BLUE + "///////////////////////////////////////" + RESET);
+        System.out.println(BLUE + "*                                     *" + RESET);
+        System.out.println(BLUE + "*      " + RED + "어서오세요 CGV 매점 키오스크입니다" + BLUE + "     *" + RESET);
+        System.out.println(BLUE + "*         " + YELLOW + "원하는 메뉴를 입력해주세요" + BLUE + "         *" + RESET);
+        System.out.println(BLUE + "*                                     *" + RESET);
+        System.out.println(BLUE + "///////////////////////////////////////" + RESET);
 
         do {
             // 메뉴 출력
