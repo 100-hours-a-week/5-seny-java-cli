@@ -10,6 +10,7 @@ public class Product {
         this.name = name;
         this.price = price;
         this.size = size;
+
     }
 
     public Product(String name, int price) {
@@ -44,10 +45,16 @@ public class Product {
         return size;
     }
 
+    public int getPlusPrice() {
+        return plusPrice;
+    }
+
     public String printMenu() {
         if (plusPrice > 0) {
             return name + " " + price + "원 " + size + " (+" + plusPrice + "원)";
         }
         return name + " " + price + "원 " + size + " ";
     }
+
+
 }
