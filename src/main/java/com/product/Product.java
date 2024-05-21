@@ -56,5 +56,9 @@ public class Product {
         return name + " " + price + "원 " + size + " ";
     }
 
+    public String info(){
+        return name + " " + price + " " + size + " " + plusPrice;
+    }
+
 
 }

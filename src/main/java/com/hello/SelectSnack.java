@@ -1,29 +1,30 @@
 package com.hello;
-import com.product.Popcorn;
-import com.product.PopcornList;
+
+import com.product.Snack;
+import com.product.SnackList;
 
 import java.util.Scanner;
 
-public class SelectPopCorn extends Welcome {
+public class SelectSnack extends Welcome{
     private int input;
-    // PopcornList에서 팝콘 객체 배열 가져오기
-    private Popcorn[] popcorns = PopcornList.createPopcornList();
+    // SnackList에서 스낵 객체 배열 가져오기
+    private Snack[] snacks = SnackList.createSnackList();
 
     public int run() throws InterruptedException {
-        Scanner scanner = new Scanner(System.in); // 사용자 입력을 위한 Scanner 객체 생성
+        Scanner scanner = new Scanner(System.in);
 
-        // 팝콘 메뉴 출력
+        // 스낵 메뉴 출력
         printlnWithDelay(BLUE + "///////////////////////////////////////" + RESET);
         printlnWithDelay(BLUE + "                                     " + RESET);
-        printlnWithDelay(BLUE + "         " + RED + "팝콘 주문 페이지 입니다." + BLUE + "     " + RESET);
+        printlnWithDelay(BLUE + "         " + RED + "스낵 주문 페이지 입니다." + BLUE + "     " + RESET);
         printlnWithDelay(BLUE + "         " + YELLOW + "원하는 메뉴를 입력해주세요" + BLUE + "         " + RESET);
         printlnWithDelay(BLUE + "                                     " + RESET);
         printlnWithDelay(BLUE + "///////////////////////////////////////" + RESET);
 
         do {
             // 팝콘 메뉴 출력
-            for (int i = 0; i < popcorns.length; i++) {
-                printlnWithDelay((i + 1) + ": " + popcorns[i].printMenu());
+            for (int i = 0; i < snacks.length; i++) {
+                printlnWithDelay((i + 1) + ": " + snacks[i].printMenu());
             }
             printlnWithDelay("0: 종료");
             System.out.print("맛을 선택해주세요: ");
@@ -36,8 +37,8 @@ public class SelectPopCorn extends Welcome {
             input = scanner.nextInt();
 
             // 입력한 번호에 해당하는 팝콘 정보 출력 (예외 처리는 하지 않음)
-            if (input > 0 && input <= popcorns.length) {
-                printlnWithDelay("선택하신 팝콘: " + popcorns[input - 1].printMenu());
+            if (input > 0 && input <= snacks.length) {
+                printlnWithDelay("선택하신 스낵: " + snacks[input - 1].printMenu());
                 break;
             } else if (input == 0) {
                 printlnWithDelay("프로그램을 종료합니다.");

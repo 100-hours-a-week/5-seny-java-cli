@@ -17,16 +17,36 @@ public class Welcome {
     public static final String CYAN = "\u001B[36m";
     public static final String WHITE = "\u001B[37m";
 
-    public int run() {
+    public static final int DELAY = 00; // 밀리초 단위로 지연시간 설정 (0.4초)
+
+    public int run() throws InterruptedException {
         Scanner scanner = new Scanner(System.in);
 
-        // 화려한 시작 화면
-        System.out.println(BLUE + "///////////////////////////////////////" + RESET);
-        System.out.println(BLUE + "*                                     *" + RESET);
-        System.out.println(BLUE + "*      " + RED + "어서오세요 CGV 매점 키오스크입니다" + BLUE + "     *" + RESET);
-        System.out.println(BLUE + "*         " + YELLOW + "원하는 메뉴를 입력해주세요" + BLUE + "         *" + RESET);
-        System.out.println(BLUE + "*                                     *" + RESET);
-        System.out.println(BLUE + "///////////////////////////////////////" + RESET);
+        // 텍스트 한 줄씩 출력
+        try {
+            printlnWithDelay("");
+            printlnWithDelay("");
+            printlnWithDelay("             Welcome to");
+            printlnWithDelay("");
+            printlnWithDelay("");
+            printlnWithDelay("     //////    //////   //        //    " + RESET);
+            printlnWithDelay("    //    //  //    //  //       //     " + RESET);
+            printlnWithDelay("    //        //         //     //" + RESET);
+            printlnWithDelay("    //        //   ///    //   //    " + RESET);
+            printlnWithDelay("    //        //    //     // //        " + RESET);
+            printlnWithDelay("    //    //  //    //      ///       " + RESET);
+            printlnWithDelay("     //////    //////        /        " + RESET);
+            printlnWithDelay("");
+            printlnWithDelay("");
+            printlnWithDelay(BLUE + "///////////////////////////////////////" + RESET);
+            printlnWithDelay(BLUE + "                                     " + RESET);
+            printlnWithDelay(BLUE + "      " + RED + "어서오세요 CGV 매점 키오스크입니다" + BLUE + "     " + RESET);
+            printlnWithDelay(BLUE + "         " + YELLOW + "원하는 메뉴를 입력해주세요" + BLUE + "         " + RESET);
+            printlnWithDelay(BLUE + "                                     " + RESET);
+            printlnWithDelay(BLUE + "///////////////////////////////////////" + RESET);
+        } catch (InterruptedException e) {
+            System.out.println("출력 중 인터럽트 발생: " + e.getMessage());
+        }
 
         do {
             // 메뉴 출력
@@ -56,5 +76,16 @@ public class Welcome {
         } while (input != 0);
 
         return input;
+    }
+
+    // 한 줄씩 출력하는 메서드
+    public void printlnWithDelay(String text) throws InterruptedException {
+        System.out.println(text);
+        Thread.sleep(DELAY);
+    }
+
+    public static void main(String[] args) throws InterruptedException {
+        Welcome welcome = new Welcome();
+        welcome.run();
     }
 }
