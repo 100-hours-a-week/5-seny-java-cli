@@ -14,8 +14,6 @@ public class PopcornList {
         popcorns[7] = new Popcorn("바질어니언팝콘", 6500, "L", 1500);
         popcorns[8] = new Popcorn("반반팝콘", 6500, "L", 1500);
 
-
-
         return popcorns;
     }
 }

@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Welcome {
     private int input; // 사용자 입력을 저장할 변수 선언
-    private String[] welcomeMenu = {"콤보 주문", "팝콘 주문", "음료 주문", "스낵 주문"}; // 배열저장은 {} 안에
+    private String[] welcomeMenu = {"콤보 주문 👍", "팝콘 주문 🍿", "음료 주문 🥤", "스낵 주문 🍕"}; // 배열저장은 {} 안에
 
     // ANSI escape codes for colors
     public static final String RESET = "\u001B[0m";
@@ -29,7 +29,7 @@ public class Welcome {
             printlnWithDelay("             Welcome to");
             printlnWithDelay("");
             printlnWithDelay("");
-            printlnWithDelay("     //////    //////   //        //    " + RESET);
+            printlnWithDelay("     //////    //////   //       //    " + RESET);
             printlnWithDelay("    //    //  //    //  //       //     " + RESET);
             printlnWithDelay("    //        //         //     //" + RESET);
             printlnWithDelay("    //        //   ///    //   //    " + RESET);
@@ -40,10 +40,11 @@ public class Welcome {
             printlnWithDelay("");
             printlnWithDelay(BLUE + "///////////////////////////////////////" + RESET);
             printlnWithDelay(BLUE + "                                     " + RESET);
-            printlnWithDelay(BLUE + "      " + RED + "어서오세요 CGV 매점 키오스크입니다" + BLUE + "     " + RESET);
-            printlnWithDelay(BLUE + "         " + YELLOW + "원하는 메뉴를 입력해주세요" + BLUE + "         " + RESET);
+            printlnWithDelay(BLUE + "   " + WHITE + "🤗 어서오세요" + RED +" CGV 매점"+WHITE+" 키오스크입니다 🤗" + BLUE + "     " + RESET);
+            printlnWithDelay(BLUE + "         " + WHITE + "원하는 메뉴를 입력해주세요" + BLUE + "         " + RESET);
             printlnWithDelay(BLUE + "                                     " + RESET);
             printlnWithDelay(BLUE + "///////////////////////////////////////" + RESET);
+            printlnWithDelay("");
         } catch (InterruptedException e) {
             System.out.println("출력 중 인터럽트 발생: " + e.getMessage());
         }
@@ -54,7 +55,9 @@ public class Welcome {
                 System.out.println((i + 1) + ". " + welcomeMenu[i]);
             }
             System.out.println("0: 종료");
+            printlnWithDelay("");
             System.out.print("메뉴를 선택해주세요: ");
+
 
             // 사용자로부터 다음 메뉴를 선택하도록 숫자 입력 받기
             while (!scanner.hasNextInt()) {

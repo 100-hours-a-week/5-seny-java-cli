@@ -17,7 +17,7 @@ public class Snack extends Product{
         super(name, price, plusPrice);
     }
 
-    public String printMenu(){
+    public String printSetMenu(){
         return getName() + " (+" + getPrice() + "원) ";
     }
 }

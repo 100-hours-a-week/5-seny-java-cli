@@ -49,16 +49,19 @@ public class Product {
         return plusPrice;
     }
 
-    public String printMenu() {
+    public String printSetMenu() {
         if (plusPrice > 0) {
             return name + " " + price + "원 " + size + " (+" + plusPrice + "원)";
         }
         return name + " " + price + "원 " + size + " ";
     }
 
-    public String info(){
-        return name + " " + price + " " + size + " " + plusPrice;
+    public String printInfo(){
+        return name + " " + size + " ";
     }
 
+    public String printMenu() {
+        return name + " " + price + "원 ";
+    }
 
 }
