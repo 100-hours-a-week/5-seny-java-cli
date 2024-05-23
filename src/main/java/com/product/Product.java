@@ -5,6 +5,7 @@ public class Product {
     private int price;
     private String size;
     private int plusPrice = 0;
+    private String[] info;
 
     public Product(String name, int price, String size) {
         this.name = name;
@@ -33,6 +34,13 @@ public class Product {
         this.plusPrice = plusPrice;
     }
 
+    // 세트메뉴에서 사용
+    public Product(String name, int price, String[] info){
+        this.name = name;
+        this.price = price;
+        this.info = info;
+    }
+
     public String getName() {
         return name;
     }
@@ -49,11 +57,16 @@ public class Product {
         return plusPrice;
     }
 
-    public String printSetMenu() {
-        if (plusPrice > 0) {
-            return name + " " + price + "원 " + size + " (+" + plusPrice + "원)";
+    public String[] getInfo() {
+        return info;
+    }
+
+    public String printSetMenu(int price) {
+        int plusPrice = price - getPlusPrice();
+        if (getPlusPrice() > 0) {
+            return getName() + " " + getSize() + " (+" + plusPrice + "원)";
         }
-        return name + " " + price + "원 " + size + " ";
+        return getName() + " " + getSize() + " ";
     }
 
     public String printInfo(){
