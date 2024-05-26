@@ -141,7 +141,7 @@ java-cli-cgv
 4. 컴파일: `javac -d bin src/**/*.java`
 5. 실행: `java -cp bin com.hello.Main` 
 <div>
-<img src="img_9.png" width ="32%">
+<img src="img_10.png" width ="32%">
 <img src="img_1.png" width ="32%">
 <img src="img_2.png" width ="32%">
 </div>
