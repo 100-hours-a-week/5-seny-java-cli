@@ -7,7 +7,7 @@
 - 프로젝트는 객체 - 지향 설계를 통해 각 기능을 모듈화하였으며, 패키지 구조를 통해 기능별로 클래스를 분류하였습니다.
 
 <div align="center"> 
-<img src="img_12.png" height="346px">
+<img src="img/img_12.png" height="346px">
 <img src="https://github.com/100-hours-a-week/5-seny-java-cli/assets/83276834/63543adf-829b-48b7-938e-aa3adbb9242c">
 </div>
 
@@ -133,9 +133,9 @@ java-cli-cgv
 
 ## 4-2. 예외 처리
 <div>
-<img src="img_6.png" width="32%">
-<img src="img_7.png" width="32%"> 
-<img src="img_8.png" width="32%">
+<img src="img/img_6.png" width="32%">
+<img src="img/img_7.png" width="32%"> 
+<img src="img/img_8.png" width="32%">
 </div>
 
 
@@ -146,14 +146,14 @@ java-cli-cgv
 4. 컴파일: `javac -d bin src/**/*.java`
 5. 실행: `java -cp bin com.hello.Main` 
 <div> 
-<img src="img_11.png" width ="32%">
-<img src="img_1.png" width ="32%">
-<img src="img_2.png" width ="32%">
+<img src="img/img_11.png" width ="32%">
+<img src="img/img_1.png" width ="32%">
+<img src="img/img_2.png" width ="32%">
 </div>
 <div>
-<img src="img_3.png" width ="32%">
-<img src="img_4.png" width ="32%">
-<img src="img_5.png" width ="32%"> 
+<img src="img/img_3.png" width ="32%">
+<img src="img/img_4.png" width ="32%">
+<img src="img/img_5.png" width ="32%"> 
 </div>
 
 
