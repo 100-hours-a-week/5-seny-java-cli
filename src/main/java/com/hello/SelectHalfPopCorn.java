@@ -30,14 +30,19 @@ public class SelectHalfPopCorn extends Welcome {
         printlnWithDelay("");
 
         int[] selections = new int[2];
-
+        System.out.print("두 가지 맛을 선택해주세요 (예: 1 2) ");
         do {
-            System.out.print("두 가지 맛을 선택해주세요 (예: 1 2) ");
+            System.out.flush(); // 출력 버퍼를 비웁니다.
             String input = scanner.nextLine();
             String[] inputs = input.split(" "); // 입력값 공백 기준으로 배열에 저장
 
+            if (inputs.length == 1 && inputs[0].equals("")){
+                // 입력값이 없는데 빈값으로 채워져버리는 경우 무시
+                continue;
+            }
             if (inputs.length != 2) {
                 printlnWithDelay("잘못된 입력입니다. 두 개의 숫자를 띄어쓰기로 구분하여 입력해주세요.");
+                System.out.print("두 가지 맛을 선택해주세요 (예: 1 2) ");
                 continue;
             }
 
@@ -47,11 +52,13 @@ public class SelectHalfPopCorn extends Welcome {
 
                 if (selections[0] < 1 || selections[0] > popcorns.length || selections[1] < 1 || selections[1] > popcorns.length) {
                     printlnWithDelay("유효한 숫자를 입력해주세요.");
+                    System.out.print("두 가지 맛을 선택해주세요 (예: 1 2) ");
                     continue;
                 }
 
                 if (selections[0] == selections[1]) {
                     printlnWithDelay("같은 숫자를 두 번 선택할 수 없습니다. 다른 숫자를 입력해주세요.");
+                    System.out.print("두 가지 맛을 선택해주세요 (예: 1 2) ");
                     continue;
                 }
 
