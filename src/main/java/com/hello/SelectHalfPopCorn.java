@@ -37,7 +37,7 @@ public class SelectHalfPopCorn extends Welcome {
             String[] inputs = input.split(" "); // 입력값 공백 기준으로 배열에 저장
 
             if (inputs.length == 1 && inputs[0].equals("")){
-                // 입력값이 없는데 빈값으로 채워져버리는 경우 무시
+                // 입력값이 없는데 빈값으로 채워져버리는 경우 무시 (엔터키만 누른 경우)
                 continue;
             }
             if (inputs.length != 2) {

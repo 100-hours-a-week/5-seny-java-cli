@@ -139,12 +139,17 @@ java-cli-cgv
 2. 프로젝트 클론: `git clone <repository-url>`
 3. 프로젝트 디렉토리로 이동: `cd <project-directory>`
 4. 컴파일: `javac -d bin src/**/*.java`
-5. 실행: `java -cp bin com.hello.Main`   
+5. 실행: `java -cp bin com.hello.Main` 
+<div>
 <img src="img.png" width ="32%">
 <img src="img_1.png" width ="32%">
 <img src="img_2.png" width ="32%">
+</div>
+<div>
 <img src="img_3.png" width ="32%">
 <img src="img_4.png" width ="32%">
 <img src="img_5.png" width ="32%"> 
+</div>
+
 
 이 프로젝트를 통해 Java의 객체 지향 프로그래밍 기법을 활용한 CLI 기반 애플리케이션 설계와 구현 방법을 학습할 수 있습니다.
