@@ -13,6 +13,8 @@ public class SelectHalfPopCorn extends Welcome {
 
     public int[] selectHalfPopcorn() throws InterruptedException{
         // 반반 팝콘 선택 페이지
+        printlnWithDelay("");
+        printlnWithDelay("");
         printlnWithDelay(BLUE + "///////////////////////////////////////" + RESET);
         printlnWithDelay(BLUE + "                                     " + RESET);
         printlnWithDelay(BLUE + "       " + RED + "🍿 반반 팝콘 주문 페이지 입니다" + BLUE + "     " + RESET);

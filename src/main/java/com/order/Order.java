@@ -15,6 +15,9 @@ public class Order {
     public Snack snack;
     public Beverage beverage;
 
+    public Order(int price) {
+        this.sum = price;
+    }
 
     public Order(Popcorn popcorn) {
         this.price1 = popcorn.getPrice();
@@ -46,6 +49,78 @@ public class Order {
         this.price3 = 0;
         this.popcorn = popcorn;
         this.snack = snack;
+    }
+
+    public int getPrice1() {
+        return price1;
+    }
+
+    public int getPrice2() {
+        return price2;
+    }
+
+    public int getPrice3() {
+        return price3;
+    }
+
+    public int getSum() {
+        return sum;
+    }
+
+    public Popcorn getPopcorn() {
+        return popcorn;
+    }
+
+    public String getPopcornN1() {
+        return popcornN1;
+    }
+
+    public String getPopcornN2() {
+        return popcornN2;
+    }
+
+    public Snack getSnack() {
+        return snack;
+    }
+
+    public Beverage getBeverage() {
+        return beverage;
+    }
+
+    public void setPrice1(int price1) {
+        this.price1 = price1;
+    }
+
+    public void setPrice2(int price2) {
+        this.price2 = price2;
+    }
+
+    public void setPrice3(int price3) {
+        this.price3 = price3;
+    }
+
+    public void setSum(int sum) {
+        this.sum = sum;
+    }
+
+    public void setPopcorn(Popcorn popcorn) {
+        this.popcorn = popcorn;
+    }
+
+    public void setPopcornN1(String popcornN1) {
+        this.popcornN1 = popcornN1;
+    }
+
+    public void setPopcornN2(String popcornN2) {
+        this.popcornN2 = popcornN2;
+    }
+
+    public void setSnack(Snack snack) {
+        this.snack = snack;
+    }
+
+    public void setBeverage(Beverage beverage) {
+        this.beverage = beverage;
     }
 
     public String totalPrice() {

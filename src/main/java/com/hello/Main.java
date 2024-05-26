@@ -37,30 +37,34 @@ public class Main {
                 Map<String, String>[] beverageSelection = selectBeverage.run(1, defPriceB, beverageNum);
                 // 세트 가격 계산
                 int totalPrice = combos[comboSelection - 1].getPrice();
-                System.out.println("세트 가격: " + totalPrice + "원");
+                Order order = new Order(totalPrice);
+                System.out.println("");
+                System.out.println("주문 내역");
+                System.out.println("세트 가격: " + order.getSum() + "원");
 
                 // 팝콘 가격 추가 및 반반 팝콘 처리
                 for (Map<String, String> popcorn : popcornSelection) {
                     if (popcorn != null) {
                         if (popcorn.get("name").equals("반반팝콘")) {
                             System.out.println("반반 팝콘을 선택하셨습니다.");
-                            totalPrice += Integer.parseInt(popcorn.get("price"));
-                            System.out.println("반반 팝콘 선택 추가 가격: " + Integer.parseInt(popcorn.get("price")) + "원");
-                        } else {
-                            totalPrice += Integer.parseInt(popcorn.get("price"));
-                            System.out.println("팝콘 가격: " + Integer.parseInt(popcorn.get("price")) + "원 추가되었습니다.");
+                            int[] halfSelection = selectHalfPopCorn.selectHalfPopcorn();
+
                         }
                     }
+                    totalPrice += Integer.parseInt(popcorn.get("price"));
+                    order.setSum(totalPrice);
+                    System.out.println(popcorn.get("name") + " : +" + Integer.parseInt(popcorn.get("price")) + "원 추가되었습니다.");
                 }
 
                 // 음료 가격 추가
                 for (Map<String, String> beverage : beverageSelection) {
                     if (beverage != null) {
                         totalPrice += Integer.parseInt(beverage.get("price"));
-                        System.out.println("음료 가격: " + Integer.parseInt(beverage.get("price")) + "원 추가되었습니다.");
+                        order.setSum(totalPrice);
+                        System.out.println(beverage.get("name") + " : +" + Integer.parseInt(beverage.get("price")) + "원 추가되었습니다.");
                     }
                 }
-                System.out.println("총 가격: " + totalPrice + "원");
+                System.out.println("총 가격: " + order.getSum() + "원");
             }
 
             // 사용자가 2번을 선택한 경우 팝콘 메뉴로 이동

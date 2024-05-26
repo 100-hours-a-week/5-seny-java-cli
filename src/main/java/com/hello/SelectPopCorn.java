@@ -60,6 +60,9 @@ public class SelectPopCorn extends Welcome {
 
                 // 입력한 번호에 해당하는 팝콘 정보 출력 (예외 처리는 하지 않음)
                 if (input[0] > 0 && input[0] <= popcorns.length) {
+                    if (pass) {
+                        input[0]++;
+                    }
                     printlnWithDelay("");
                     printlnWithDelay("선택하신 팝콘: " + popcorns[input[0] - 1].printInfo());
                     returns = new Map[1];
