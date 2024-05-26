@@ -1,63 +1,75 @@
 package com.hello;
 
+import com.order.BeverageOrderHandler;
+import com.order.HandleMenu;
+import com.order.PopcornOrderHandler;
+import com.order.SetMenuHandler;
+import com.order.SnackOrderHandler;
 import com.order.Order;
-import com.product.*;
+import com.payment.CardPaymentHandler;
+import com.payment.CashPaymentHandler;
+import com.payment.PaymentHandler;
 
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws InterruptedException {
-        Scanner scanner = new Scanner(System.in); // 사용자 입력을 위한 Scanner 객체 생성
-        // Welcome 클래스 사용하여 메뉴 선택
-        Welcome welcome = new Welcome();
-        // 첫 반복문
-        int menuSelection = welcome.run();
-        System.out.println(menuSelection);
+        Scanner scanner = new Scanner(System.in);
+        try {
+            Welcome welcome = new Welcome();
+            int menuSelection = welcome.run();
+            System.out.println(menuSelection);
 
-        // 사용자가 1번을 선택한 경우 세트 메뉴로 이동 ( 팝콘 선택 - 음료선택 - 스낵 추가 선택 순서 )
-        if (menuSelection == 1) {
+            HandleMenu handler = null;
+            SelectCombo selectCombo = new SelectCombo(scanner);
+            SelectPopCorn selectPopCorn = new SelectPopCorn(scanner);
+            SelectHalfPopCorn selectHalfPopCorn = new SelectHalfPopCorn(scanner);
+            SelectBeverage selectBeverage = new SelectBeverage(scanner);
+            SelectSnack selectSnack = new SelectSnack(scanner);
 
-        }
 
-        // 사용자가 2번을 선택한 경우 팝콘 메뉴로 이동
-        else if (menuSelection == 2) {
-            SelectPopCorn selectPopCorn = new SelectPopCorn();
-            int popcornSelction = selectPopCorn.run(2);
-            // 주문처리
-            Popcorn[] popcorns = PopcornList.createPopcornList();
-            if (popcornSelction == 9) {
-                System.out.println("반반 팝콘을 선택하셨습니다.");
-                SelectHalfPopCorn selectHalfPopCorn = new SelectHalfPopCorn();
-                int[] halfSelection = selectHalfPopCorn.selectHalfPopcorn();
-                Order order = new Order(popcorns[popcornSelction-1], halfSelection[0], halfSelection[1]);
-                System.out.println(order.totalOrder());
-                System.out.println(order.totalPrice());
+            switch (menuSelection) {
+                case 1:
+                    handler = new SetMenuHandler(selectCombo, selectPopCorn, selectHalfPopCorn, selectBeverage, scanner);
+                    break;
+                case 2:
+                    handler = new PopcornOrderHandler(selectPopCorn, selectHalfPopCorn);
+                    break;
+                case 3:
+                    handler = new BeverageOrderHandler(selectBeverage);
+                    break;
+                case 4:
+                    handler = new SnackOrderHandler(selectSnack);
+                    break;
+                default:
+                    System.out.println("잘못된 선택입니다.");
             }
-            else {
-                Order order = new Order(popcorns[popcornSelction-1]);
-                System.out.println(order.totalOrder());
-                System.out.println(order.totalPrice());
+
+            if (handler != null) {
+                handler.handle();
+                Order order = handler.getOrder();
+
+                System.out.println("결제 방식을 선택해주세요: 1. 카드결제 2. 현금결제");
+                int paymentMethod = scanner.nextInt();
+                PaymentHandler paymentHandler = null;
+
+                while (paymentMethod != 1 && paymentMethod != 2) {
+                    System.out.println("잘못된 선택입니다. 다시 선택해주세요.");
+                    paymentMethod = scanner.nextInt();
+                }
+                if (paymentMethod == 1) {
+                    paymentHandler = new CardPaymentHandler();
+                } else if (paymentMethod == 2) {
+                    paymentHandler = new CashPaymentHandler(scanner);
+                }
+
+                paymentHandler.processPayment(order.getTotalPrice());
             }
 
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            scanner.close();
         }
-        else if (menuSelection == 3) {
-            SelectBeverage selectBeverage = new SelectBeverage();
-            int beverageSelction = selectBeverage.run(3);
-            // 음료 주문처리
-            Beverage[] beverages = BeverageList.createBeverageList();
-            Order order = new Order(beverages[beverageSelction-1]);
-            System.out.println(order.totalOrder());
-            System.out.println(order.totalPrice());
-        }
-        else if (menuSelection == 4){
-            // 스낵 선택
-            SelectSnack selectSnack = new SelectSnack();
-            int snackSelection = selectSnack.run(4);
-            Snack[] snacks = SnackList.createSnackList();
-            Order order = new Order(snacks[snackSelection-1]);
-            System.out.println(order.totalOrder());
-            System.out.println(order.totalPrice());
-        }
-        scanner.close(); // Scanner 객체를 닫아 리소스를 해제합니다.
     }
 }
