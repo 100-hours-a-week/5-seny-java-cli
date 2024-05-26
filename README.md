@@ -127,10 +127,11 @@ java-cli-cgv
 
 
 ## 4-2. 예외 처리
-
+<div>
 <img src="img_6.png" width="32%">
 <img src="img_7.png" width="32%"> 
 <img src="img_8.png" width="32%">
+</div>
 
 
 ## 5. 실행 방법
