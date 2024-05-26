@@ -17,9 +17,13 @@ public class Beverage extends Product {
         super(name, price, plusPrice);
     }
 
-    public String printSetMenu() {
-        if (getPlusPrice() > 0) {
-            return getName() + " " + getSize() + " (+" + getPlusPrice() + "원)";
+    public String printSetMenu(int price2) {
+        int plusPrice = getPrice() - price2;
+        if (plusPrice > 0) {
+            return getName() + " " + getSize() + " (+" + plusPrice + "원)";
+        }
+        else if (plusPrice < 0){
+            return null;
         }
         return getName() + " " + getSize() + " ";
     }

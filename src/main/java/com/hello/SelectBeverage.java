@@ -10,7 +10,7 @@ public class SelectBeverage extends Welcome {
     // BeverageList에서 음료 객체 배열 가져오기
     private Beverage[] beverages = BeverageList.createBeverageList();
 
-    public int run(int num) throws InterruptedException{
+    public int run(int num, int price) throws InterruptedException{
         Scanner scanner = new Scanner(System.in);
 
         // 음료 메뉴 출력
@@ -24,12 +24,18 @@ public class SelectBeverage extends Welcome {
 
         do {
             // 음료 메뉴 출력
+            int displayIndex = 1;
             for (int i = 0; i < beverages.length; i++) {
                 if (num!= 1){
                     printlnWithDelay((i+1) + ": " + beverages[i].printMenu());
                 }
                 else if (num == 1){
-                    printlnWithDelay((i+1) + ": " + beverages[i].printSetMenu());
+                    String menu = beverages[i].printSetMenu(price);
+                    if (menu == null) {
+                        continue; // 차액이 음수인 경우 현재 반복 건너뛰기
+                    }
+                    printlnWithDelay(displayIndex + ": " + menu);
+                    displayIndex++;
                 }
             }
             printlnWithDelay("0: 종료");

@@ -4,7 +4,7 @@ import com.order.Order;
 import com.product.*;
 
 import java.util.Scanner;
-
+///// 여기까지 돌아가면 됩ㄴ디아.ㅇ
 public class Main {
     public static void main(String[] args) throws InterruptedException {
         Scanner scanner = new Scanner(System.in); // 사용자 입력을 위한 Scanner 객체 생성
@@ -28,9 +28,11 @@ public class Main {
             String[] setInfo = combos[comboSelection-1].getInfo();
             int defPriceP = Integer.parseInt(setInfo[6]); // 팝콘 기준가
             int defPriceB = Integer.parseInt(setInfo[7]); // 음료 기준가
-            System.out.println(defPriceP +","+ defPriceB);
+//            System.out.println(defPriceP +","+ defPriceB);
             int popcornSelection = selectPopCorn.run(1, defPriceP);
-            int BeverageSelection = selectPopCorn.run(1, defPriceB);
+            int BeverageSelection = selectBeverage.run(1, defPriceB);
+            int totalPrice = Integer.parseInt(setInfo[1]); // 세트 가격
+            int popcornNum = Integer.parseInt(setInfo[2]); // 팝콘 개수
 
         }
 
@@ -55,7 +57,7 @@ public class Main {
 
         }
         else if (menuSelection == 3) {
-            int beverageSelction = selectBeverage.run(3);
+            int beverageSelction = selectBeverage.run(3,0);
             // 음료 주문처리
             Beverage[] beverages = BeverageList.createBeverageList();
             Order order = new Order(beverages[beverageSelction-1]);
