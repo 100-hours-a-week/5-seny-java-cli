@@ -7,7 +7,7 @@
 - 프로젝트는 객체 - 지향 설계를 통해 각 기능을 모듈화하였으며, 패키지 구조를 통해 기능별로 클래스를 분류하였습니다.
 
 <div align="center"> 
-<img src="img_12.png" width="42%">
+<img src="img_12.png" height="346px">
 <img src="https://github.com/100-hours-a-week/5-seny-java-cli/assets/83276834/63543adf-829b-48b7-938e-aa3adbb9242c">
 </div>
 
