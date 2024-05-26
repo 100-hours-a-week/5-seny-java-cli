@@ -18,6 +18,7 @@ public class SetMenuHandler implements HandleMenu {
     private SelectHalfPopCorn selectHalfPopCorn;
     private SelectBeverage selectBeverage;
     private Scanner scanner;
+    private Order order;
 
     public SetMenuHandler(SelectCombo selectCombo, SelectPopCorn selectPopCorn, SelectHalfPopCorn selectHalfPopCorn, SelectBeverage selectBeverage, Scanner scanner) {
         this.selectCombo = selectCombo;
@@ -41,7 +42,7 @@ public class SetMenuHandler implements HandleMenu {
         Map<String, String>[] beverageSelection = selectBeverage.run(1, defPriceB, beverageNum);
 
         int initialPrice = combos[comboSelection - 1].getPrice();
-        Order order = new Order(initialPrice);
+        order = new Order(initialPrice);
 
         System.out.println("\n주문 내역");
         System.out.println("세트 가격: " + initialPrice + "원");
@@ -55,18 +56,23 @@ public class SetMenuHandler implements HandleMenu {
 //                    System.out.println(halfPopcornDetails);
                     order.addItem("반반팝콘", Integer.parseInt(popcorn.get("price")));
                 } else {
-                    order.addItem(popcorn.get("name"), Integer.parseInt(popcorn.get("price")));
+                    order.addItem(popcorn.get("name"), Integer.parseInt(popcorn.get("price")), popcorn.get("size"));
                 }
             }
         }
 
         for (Map<String, String> beverage : beverageSelection) {
             if (beverage != null) {
-                order.addItem(beverage.get("name"), Integer.parseInt(beverage.get("price")));
+                order.addItem(beverage.get("name"), Integer.parseInt(beverage.get("price")), beverage.get("size"));
             }
         }
 
         System.out.println(order.getOrderDetails());
         System.out.println("총 가격: " + order.getTotalPrice() + "원");
+    }
+
+    @Override
+    public Order getOrder() {
+        return order;
     }
 }

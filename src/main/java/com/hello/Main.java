@@ -5,6 +5,10 @@ import com.order.HandleMenu;
 import com.order.PopcornOrderHandler;
 import com.order.SetMenuHandler;
 import com.order.SnackOrderHandler;
+import com.order.Order;
+import com.payment.CardPaymentHandler;
+import com.payment.CashPaymentHandler;
+import com.payment.PaymentHandler;
 
 import java.util.Scanner;
 
@@ -26,13 +30,7 @@ public class Main {
 
             switch (menuSelection) {
                 case 1:
-                    handler = new SetMenuHandler(
-                            selectCombo,
-                            selectPopCorn,
-                            selectHalfPopCorn,
-                            selectBeverage,
-                            scanner
-                    );
+                    handler = new SetMenuHandler(selectCombo, selectPopCorn, selectHalfPopCorn, selectBeverage, scanner);
                     break;
                 case 2:
                     handler = new PopcornOrderHandler(selectPopCorn, selectHalfPopCorn);
@@ -49,7 +47,25 @@ public class Main {
 
             if (handler != null) {
                 handler.handle();
+                Order order = handler.getOrder();
+
+                System.out.println("결제 방식을 선택해주세요: 1. 카드결제 2. 현금결제");
+                int paymentMethod = scanner.nextInt();
+                PaymentHandler paymentHandler = null;
+
+                while (paymentMethod != 1 && paymentMethod != 2) {
+                    System.out.println("잘못된 선택입니다. 다시 선택해주세요.");
+                    paymentMethod = scanner.nextInt();
+                }
+                if (paymentMethod == 1) {
+                    paymentHandler = new CardPaymentHandler();
+                } else if (paymentMethod == 2) {
+                    paymentHandler = new CashPaymentHandler(scanner);
+                }
+
+                paymentHandler.processPayment(order.getTotalPrice());
             }
+
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

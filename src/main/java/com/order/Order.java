@@ -49,8 +49,16 @@ public class Order {
         this.orderDetails = new StringBuilder();
     }
 
+    public void addItem(String name, int price, String size) {
+        totalPrice += price;
+        orderDetails.append(name).append(" : +").append(price).append("원 추가되었습니다.\n");
+        orderDetails.append(name).append(" ").append(size).append(" : +").append(price).append("원 추가되었습니다.\n");
+    }
+
+    // 반반팝콘은 사이즈 출력 필요없음
     public void addItem(String name, int price) {
         totalPrice += price;
+        orderDetails.append(name).append(" : +").append(price).append("원 추가되었습니다.\n");
         orderDetails.append(name).append(" : +").append(price).append("원 추가되었습니다.\n");
     }
 

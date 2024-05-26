@@ -9,6 +9,7 @@ import java.util.Map;
 
 public class BeverageOrderHandler implements HandleMenu {
     private SelectBeverage selectBeverage;
+    private Order order;
 
     public BeverageOrderHandler(SelectBeverage selectBeverage) {
         this.selectBeverage = selectBeverage;
@@ -30,8 +31,15 @@ public class BeverageOrderHandler implements HandleMenu {
             }
         }
 
-        Order order = new Order(beverages[selectedIndex]);
+        order = new Order(beverages[selectedIndex]);
         System.out.println(order.totalOrder());
         System.out.println(order.totalPrice());
     }
+
+    @Override
+    public Order getOrder() {
+        return order;
+    }
+
+
 }

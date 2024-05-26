@@ -6,6 +6,7 @@ import com.product.SnackList;
 
 public class SnackOrderHandler implements HandleMenu {
     private SelectSnack selectSnack;
+    private Order order;
 
     public SnackOrderHandler(SelectSnack selectSnack) {
         this.selectSnack = selectSnack;
@@ -15,9 +16,14 @@ public class SnackOrderHandler implements HandleMenu {
     public void handle() throws InterruptedException {
         int snackSelection = selectSnack.run(4);
         Snack[] snacks = SnackList.createSnackList();
-        Order order = new Order(snacks[snackSelection - 1]);
+        order = new Order(snacks[snackSelection - 1]);
         System.out.println(order.totalOrder());
         System.out.println(order.totalPrice());
+    }
+
+    @Override
+    public Order getOrder() {
+        return order;
     }
 }
 

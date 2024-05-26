@@ -11,6 +11,7 @@ import java.util.Map;
 public class PopcornOrderHandler implements HandleMenu {
     private SelectPopCorn selectPopCorn;
     private SelectHalfPopCorn selectHalfPopCorn;
+    private Order order;
 
     public PopcornOrderHandler(SelectPopCorn selectPopCorn, SelectHalfPopCorn selectHalfPopCorn) {
         this.selectPopCorn = selectPopCorn;
@@ -39,10 +40,15 @@ public class PopcornOrderHandler implements HandleMenu {
                     break;
                 }
             }
-            Order order = new Order(popcorns[selectedIndex]);
+            order = new Order(popcorns[selectedIndex]);
             System.out.println(order.totalOrder());
             System.out.println(order.totalPrice());
         }
+    }
+
+    @Override
+    public Order getOrder() {
+        return order;
     }
 }
 
