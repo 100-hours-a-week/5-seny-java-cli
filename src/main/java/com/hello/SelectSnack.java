@@ -23,6 +23,7 @@ public class SelectSnack extends Welcome{
         printlnWithDelay(BLUE + "         " + YELLOW + "원하는 메뉴를 입력해주세요" + BLUE + "         " + RESET);
         printlnWithDelay(BLUE + "                                     " + RESET);
         printlnWithDelay(BLUE + "///////////////////////////////////////" + RESET);
+        System.out.println("");
 
         do {
             // 팝콘 메뉴 출력
@@ -35,7 +36,9 @@ public class SelectSnack extends Welcome{
                 }
             }
             printlnWithDelay("0. 종료 ");
+            System.out.println("");
             System.out.print("맛을 선택해주세요: ");
+            System.out.println("");
 
             // 사용자로부터 다음 팝콘을 선택하도록 숫자 입력 받기
             while (!scanner.hasNextInt()) {
