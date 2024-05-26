@@ -20,4 +20,9 @@ public class Snack extends Product{
     public String printSetMenu(){
         return getName() + " (+" + getPrice() + "원) ";
     }
+
+    @Override
+    public String printInfo() {
+        return getName() + " " ;
+    }
 }

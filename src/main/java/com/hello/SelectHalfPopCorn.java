@@ -10,20 +10,15 @@ public class SelectHalfPopCorn extends Welcome {
         this.scanner = scanner;
     }
 
-
-    public int[] selectHalfPopcorn() throws InterruptedException{
-        // 반반 팝콘 선택 페이지
-        printlnWithDelay("");
-        printlnWithDelay("");
+    public int[] selectHalfPopcorn() throws InterruptedException {
         printlnWithDelay(BLUE + "///////////////////////////////////////" + RESET);
         printlnWithDelay(BLUE + "                                     " + RESET);
         printlnWithDelay(BLUE + "       " + RED + "🍿 반반 팝콘 주문 페이지 입니다" + BLUE + "     " + RESET);
-        printlnWithDelay(BLUE + "       " + WHITE+"   두 가지 맛을 선택해주세요" + BLUE + "         " + RESET);
+        printlnWithDelay(BLUE + "       " + WHITE + "   두 가지 맛을 선택해주세요" + BLUE + "         " + RESET);
         printlnWithDelay(BLUE + "                                     " + RESET);
         printlnWithDelay(BLUE + "///////////////////////////////////////" + RESET);
         printlnWithDelay("");
 
-        // 1. 고소  2. 달콤  3. 더블치즈  4. 바질어니언 출력
         StringBuilder menu = new StringBuilder();
         for (int i = 0; i < popcorns.length; i++) {
             menu.append((i + 1)).append(". ").append(popcorns[i]);
@@ -36,7 +31,7 @@ public class SelectHalfPopCorn extends Welcome {
 
         int[] selections = new int[2];
 
-        do{
+        do {
             System.out.print("두 가지 맛을 선택해주세요 (예: 1 2) ");
             String input = scanner.nextLine();
             String[] inputs = input.split(" "); // 입력값 공백 기준으로 배열에 저장
@@ -68,6 +63,5 @@ public class SelectHalfPopCorn extends Welcome {
         } while (true);
 
         return selections;
-
     }
 }

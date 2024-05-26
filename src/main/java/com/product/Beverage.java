@@ -40,7 +40,9 @@ public class Beverage extends Product {
         return beverageInfo;
     }
 
+    @Override
     public String printMenu() {
-        return getName() + " " + getPrice() + "원";
+        return getName() + " " + getSize() +" " + getPrice() + "원 ";
+
     }
 }

@@ -40,4 +40,10 @@ public class Popcorn extends Product {
         beverageInfo.put("price", String.valueOf(getPlusPrice()));
         return beverageInfo;
     }
+
+    @Override
+    public String printMenu() {
+        return getName() + " " + getSize() +" " + getPrice() + "원 ";
+
+    }
 }
