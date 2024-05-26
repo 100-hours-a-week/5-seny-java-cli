@@ -8,9 +8,15 @@ import java.util.Scanner;
 public class SelectCombo extends Welcome {
     private int input;
     private Combo[] combos = ComboList.createComboList();
+    private Scanner scanner; // Scanner 필드 추가
+
+    // 생성자에서 Scanner 인스턴스 받기
+    public SelectCombo(Scanner scanner) {
+        this.scanner = scanner;
+    }
 
     public int run(int num) throws InterruptedException {
-        Scanner scanner = new Scanner(System.in); // 사용자 입력을 위한 Scanner 객체 생성
+        // Scanner 객체를 사용하여 사용자 입력 받기
 
         // 팝콘 메뉴 출력
         printlnWithDelay(BLUE + "///////////////////////////////////////" + RESET);
@@ -51,11 +57,5 @@ public class SelectCombo extends Welcome {
         } while (input != 0); // 입력 받은 값이 0이 아닐 때까지 반복
 
         return input;
-
-        }
-
-
     }
-
-
-
+}

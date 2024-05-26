@@ -4,10 +4,14 @@ import java.util.Scanner;
 
 public class SelectHalfPopCorn extends Welcome {
     private String[] popcorns = {"고소", "달콤", "더블치즈", "바질어니언"};
+    private Scanner scanner;
+
+    public SelectHalfPopCorn(Scanner scanner) {
+        this.scanner = scanner;
+    }
+
 
     public int[] selectHalfPopcorn() throws InterruptedException{
-        Scanner scanner = new Scanner(System.in);
-
         // 반반 팝콘 선택 페이지
         printlnWithDelay(BLUE + "///////////////////////////////////////" + RESET);
         printlnWithDelay(BLUE + "                                     " + RESET);

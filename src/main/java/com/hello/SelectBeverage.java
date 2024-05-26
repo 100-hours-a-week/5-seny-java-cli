@@ -5,18 +5,21 @@ import com.product.BeverageList;
 
 import java.util.Map;
 import java.util.Scanner;
-import java.util.HashMap;
 
 public class SelectBeverage extends Welcome {
     private int input;
     private Map<String, String>[] returns; // 선택한 음료수의 정보를 담은 배열
+    private Scanner scanner; // Scanner 객체를 필드로 선언
     // BeverageList에서 음료 객체 배열 가져오기
     private Beverage[] beverages = BeverageList.createBeverageList();
 
+    public SelectBeverage(Scanner scanner) {
+        this.scanner = scanner;
+    }
+
     @SuppressWarnings("unchecked")
     public Map<String, String>[] run(int num, int price, int selectNum) throws InterruptedException {
-        returns = new Map[selectNum]; // 선택한 음료 정보를 저장할 배열
-        Scanner scanner = new Scanner(System.in);
+        returns = (Map<String, String>[]) new Map[selectNum]; // 선택한 음료 정보를 저장할 배열
 
         // 음료 메뉴 출력
         printlnWithDelay(BLUE + "///////////////////////////////////////" + RESET);

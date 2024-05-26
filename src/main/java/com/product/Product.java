@@ -59,6 +59,10 @@ public class Product {
         return plusPrice;
     }
 
+    public int setPlusPrice(int plusPrice) {
+        return this.plusPrice = plusPrice;
+    }
+
     public String[] getInfo() {
         return info;
     }
@@ -80,7 +84,7 @@ public class Product {
         beverageInfo.put("order", "선택하신 메뉴 : " + getName());
         beverageInfo.put("name", getName());
         beverageInfo.put("size", getSize());
-        beverageInfo.put("price", String.valueOf(getPrice()));
+        beverageInfo.put("price", String.valueOf(getPlusPrice()));
         return beverageInfo;
     }
 

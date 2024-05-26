@@ -8,12 +8,16 @@ import java.util.Map;
 public class SelectPopCorn extends Welcome {
     private int[] input;
     private Map<String, String>[] returns;
+    private Scanner scanner;
     // PopcornList에서 팝콘 객체 배열 가져오기
     private Popcorn[] popcorns = PopcornList.createPopcornList();
 
+    public SelectPopCorn(Scanner scanner) {
+        this.scanner = scanner;
+    }
+
     @SuppressWarnings("unchecked")
     public Map<String, String>[] run(int num, int price, int popcornNum) throws InterruptedException {
-        Scanner scanner = new Scanner(System.in); // 사용자 입력을 위한 Scanner 객체 생성
 
         // 팝콘 메뉴 출력
         printlnWithDelay(BLUE + "///////////////////////////////////////" + RESET);

@@ -1,5 +1,8 @@
 package com.product;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Beverage extends Product {
     public Beverage(String name, int price, String size) {
         super(name, price, size);
@@ -19,12 +22,25 @@ public class Beverage extends Product {
 
     public String printSetMenu(int price2) {
         int plusPrice = getPrice() - price2;
+        setPlusPrice(plusPrice);
         if (plusPrice > 0) {
             return getName() + " " + getSize() + " (+" + plusPrice + "원)";
-        }
-        else if (plusPrice < 0){
+        } else if (plusPrice < 0) {
             return null;
         }
-        return getName() + " " + getSize() + " ";
+        return getName() + " " + getSize();
+    }
+
+    public Map<String, String> printSelect() {
+        Map<String, String> beverageInfo = new HashMap<>();
+        beverageInfo.put("order", "선택하신 음료 : " + getName());
+        beverageInfo.put("name", getName());
+        beverageInfo.put("size", getSize());
+        beverageInfo.put("price", String.valueOf(getPlusPrice()));
+        return beverageInfo;
+    }
+
+    public String printMenu() {
+        return getName() + " " + getPrice() + "원";
     }
 }

@@ -9,10 +9,13 @@ public class SelectSnack extends Welcome{
     private int input;
     // SnackList에서 스낵 객체 배열 가져오기
     private Snack[] snacks = SnackList.createSnackList();
+    private Scanner scanner;
+
+    public SelectSnack(Scanner scanner) {
+        this.scanner = scanner;
+    }
 
     public int run(int num) throws InterruptedException {
-        Scanner scanner = new Scanner(System.in);
-
         // 스낵 메뉴 출력
         printlnWithDelay(BLUE + "///////////////////////////////////////" + RESET);
         printlnWithDelay(BLUE + "                                     " + RESET);
