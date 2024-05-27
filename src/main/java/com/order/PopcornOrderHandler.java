@@ -25,7 +25,7 @@ public class PopcornOrderHandler implements HandleMenu {
         Popcorn[] popcorns = PopcornList.createPopcornList();
         if (popcornSelection[0] != null && popcornSelection[0].get("name").equals("반반팝콘")) {
             int[] halfSelection = selectHalfPopCorn.selectHalfPopcorn();
-            Order order = new Order(popcorns[8], halfSelection[0], halfSelection[1]);
+            order = new Order(popcorns[8], halfSelection[0], halfSelection[1]); // order 객체 초기화
             System.out.println(order.totalOrder());
             System.out.println(order.totalPrice());
         } else {
