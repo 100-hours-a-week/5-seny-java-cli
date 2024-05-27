@@ -1,5 +1,6 @@
 package com.hello;
 
+import com.card.CardService;
 import com.order.BeverageOrderHandler;
 import com.order.HandleMenu;
 import com.order.PopcornOrderHandler;
@@ -17,6 +18,9 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         try {
             Welcome welcome = new Welcome();
+            // 카드 서비스 객체 생성 및 점검 주기 시작
+            CardService cardService = new CardService();
+
             int menuSelection = welcome.run();
             System.out.println(menuSelection);
 
@@ -26,7 +30,6 @@ public class Main {
             SelectHalfPopCorn selectHalfPopCorn = new SelectHalfPopCorn(scanner);
             SelectBeverage selectBeverage = new SelectBeverage(scanner);
             SelectSnack selectSnack = new SelectSnack(scanner);
-
 
             switch (menuSelection) {
                 case 1:
@@ -43,29 +46,50 @@ public class Main {
                     break;
                 default:
                     System.out.println("잘못된 선택입니다.");
+                    return; // 잘못된 선택 시 프로그램 종료
             }
 
             if (handler != null) {
                 handler.handle();
                 Order order = handler.getOrder();
+                boolean paymentSuccessful = false;
 
-                System.out.println("결제 방식을 선택해주세요: 1. 카드결제 2. 현금결제");
-                int paymentMethod = scanner.nextInt();
-                PaymentHandler paymentHandler = null;
+                while (!paymentSuccessful) {
+                    System.out.println("결제 방식을 선택해주세요: 1. 카드결제 2. 현금결제");
 
-                while (paymentMethod != 1 && paymentMethod != 2) {
-                    System.out.println("잘못된 선택입니다. 다시 선택해주세요.");
-                    paymentMethod = scanner.nextInt();
+                    int paymentMethod = 0;
+                    if (scanner.hasNextInt()) {
+                        paymentMethod = scanner.nextInt();
+                        scanner.nextLine(); // 입력 버퍼를 비웁니다.
+                    }
+
+                    while (paymentMethod != 1 && paymentMethod != 2) {
+                        System.out.println("잘못된 선택입니다. 다시 선택해주세요.");
+                        if (scanner.hasNextInt()) {
+                            paymentMethod = scanner.nextInt();
+                            scanner.nextLine(); // 입력 버퍼를 비웁니다.
+                        }
+                    }
+
+                    PaymentHandler paymentHandler = null;
+                    if (paymentMethod == 1) {
+                        paymentHandler = new CardPaymentHandler(cardService); // 카드 결제 핸들러 설정
+                    } else if (paymentMethod == 2) {
+                        paymentHandler = new CashPaymentHandler(scanner); // 현금 결제 핸들러 설정
+                    }
+
+                    paymentSuccessful = paymentHandler.processPayment(order.getTotalPrice()); // 결제 처리
+                    System.out.println(paymentSuccessful);
+                    System.out.println("dkfjakfjdlajfl");
+
+                    if (paymentSuccessful) {
+                        System.out.println("결제가 완료되었습니다.");
+                        System.exit(0); // 프로그램 종료
+                    } else {
+                        System.out.println("결제가 실패했습니다. 다시 시도해 주세요.");
+                    }
                 }
-                if (paymentMethod == 1) {
-                    paymentHandler = new CardPaymentHandler();
-                } else if (paymentMethod == 2) {
-                    paymentHandler = new CashPaymentHandler(scanner);
-                }
-
-                paymentHandler.processPayment(order.getTotalPrice());
             }
-
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

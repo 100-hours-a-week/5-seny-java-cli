@@ -8,7 +8,7 @@ public class CashPaymentHandler implements PaymentHandler{
         this.scanner = scanner;
     }
     @Override
-    public void processPayment(int amount) throws InterruptedException {
+    public boolean processPayment(int amount) throws InterruptedException {
         System.out.println("결제 금액은 " + amount + "원 입니다.");
         System.out.println("현금을 투입해주세요.");
         int cash = scanner.nextInt();
@@ -22,5 +22,6 @@ public class CashPaymentHandler implements PaymentHandler{
         Thread.sleep(2000);
         System.out.println("결제가 완료되었습니다.");
         System.out.println("이용해주셔서 감사합니다. 음식은 픽업 존에 준비되어 있습니다.");
+        return true;
     }
 }
