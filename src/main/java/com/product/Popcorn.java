@@ -8,16 +8,8 @@ public class Popcorn extends Product {
         super(name, price, size);
     }
 
-    public Popcorn(String name, int price) {
-        super(name, price);
-    }
-
     public Popcorn(String name, int price, String size, int plusPrice) {
         super(name, price, size, plusPrice);
-    }
-
-    public Popcorn(String name, int price, int plusPrice) {
-        super(name, price, plusPrice);
     }
 
     public String printSetMenu(int price2) {
