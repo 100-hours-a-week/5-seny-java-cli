@@ -1,0 +1,17 @@
+[
+  {
+    "paymentId": 1,
+    "status": 1,
+    "amount": 10000
+  },
+  {
+    "paymentId": 2,
+    "status": 1,
+    "amount": 2000
+  },
+  {
+    "paymentId": 3,
+    "status": 1,
+    "amount": 3000
+  }
+]

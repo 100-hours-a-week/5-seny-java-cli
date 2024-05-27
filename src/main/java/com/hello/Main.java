@@ -1,6 +1,8 @@
 package com.hello;
 
+import com.card.BankInfoManager;
 import com.card.CardService;
+import com.card.MaintenanceCycle;
 import com.order.BeverageOrderHandler;
 import com.order.HandleMenu;
 import com.order.PopcornOrderHandler;
@@ -16,6 +18,11 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) throws InterruptedException {
         Scanner scanner = new Scanner(System.in);
+        BankInfoManager bankInfoManager = new BankInfoManager();
+        Thread maintenanceThread = new Thread(new MaintenanceCycle((bankInfoManager)));
+        // 이렇게 하면 `MaintenanceCycle` 클래스가 점검 주기를 관리하는 역할을 담당
+        maintenanceThread.start(); // 카드사 점검 주기 시작
+
         try {
             Welcome welcome = new Welcome();
             // 카드 서비스 객체 생성 및 점검 주기 시작

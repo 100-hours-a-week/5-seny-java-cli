@@ -1,10 +1,10 @@
 [
   {
-    "bankName": "국민은행",
+    "bankName": "국민카드",
     "maintenance": false
   },
   {
-    "bankName": "우리은행",
-    "maintenance": true
+    "bankName": "우리카드",
+    "maintenance": false
   }
 ]
