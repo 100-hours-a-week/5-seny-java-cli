@@ -11,6 +11,7 @@ public class BankInfoManager {
     private static final String BANK_FILE_PATH = "assets/banks.json";
     private List<Bank> banks;
     private Gson gson;
+    PaymentInfoManager paymentInfoManager = new PaymentInfoManager();
 
     public BankInfoManager(){
         gson = new Gson();
@@ -53,6 +54,7 @@ public class BankInfoManager {
                 return bank;
             }
         }
+        System.out.println("해당 이름의 은행이 없습니다.???");
         return null;
     }
 

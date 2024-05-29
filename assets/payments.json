@@ -1,17 +1,1 @@
-[
-  {
-    "paymentId": 1,
-    "status": 1,
-    "amount": 10000
-  },
-  {
-    "paymentId": 2,
-    "status": 1,
-    "amount": 2000
-  },
-  {
-    "paymentId": 3,
-    "status": 1,
-    "amount": 3000
-  }
-]
+[{"paymentId":1,"amount":10000,"status":1},{"paymentId":2,"amount":2000,"status":1},{"paymentId":3,"amount":3000,"status":1},{"paymentId":4,"amount":4000,"status":0},{"paymentId":5,"amount":4000,"status":0},{"paymentId":6,"amount":4000,"status":0},{"paymentId":7,"amount":10000,"status":0},{"paymentId":8,"amount":10000,"status":0},{"paymentId":9,"amount":10000,"status":0},{"paymentId":10,"amount":7500,"status":0},{"paymentId":11,"amount":7500,"status":0},{"paymentId":12,"amount":7500,"status":0},{"paymentId":13,"amount":8000,"status":0},{"paymentId":14,"amount":8000,"status":0},{"paymentId":15,"amount":8000,"status":2},{"paymentId":16,"amount":4400,"status":0},{"paymentId":17,"amount":4400,"status":2},{"paymentId":18,"amount":4400,"status":2},{"paymentId":19,"amount":4400,"status":2},{"paymentId":20,"amount":4400,"status":0},{"paymentId":21,"amount":8000,"status":2},{"paymentId":22,"amount":8000,"status":2},{"paymentId":23,"amount":8000,"status":2},{"paymentId":24,"amount":8000,"status":0},{"paymentId":25,"amount":3000,"status":0},{"paymentId":26,"amount":4000,"status":0}]

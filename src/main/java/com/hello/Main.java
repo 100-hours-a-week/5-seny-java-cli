@@ -25,7 +25,7 @@ public class Main {
 
         try {
             Welcome welcome = new Welcome();
-            // 카드 서비스 객체 생성 및 점검 주기 시작
+            // 카드 서비스 객체 생성
             CardService cardService = new CardService();
 
             int menuSelection = welcome.run();
@@ -71,7 +71,7 @@ public class Main {
                     }
 
                     while (paymentMethod != 1 && paymentMethod != 2) {
-                        System.out.println("잘못된 선택입니다. 다시 선택해주세요.");
+                        System.out.println("\n잘못된 선택입니다. 다시 선택해주세요.");
                         if (scanner.hasNextInt()) {
                             paymentMethod = scanner.nextInt();
                             scanner.nextLine(); // 입력 버퍼를 비웁니다.
@@ -86,8 +86,6 @@ public class Main {
                     }
 
                     paymentSuccessful = paymentHandler.processPayment(order.getTotalPrice()); // 결제 처리
-                    System.out.println(paymentSuccessful);
-                    System.out.println("dkfjakfjdlajfl");
 
                     if (paymentSuccessful) {
                         System.out.println("결제가 완료되었습니다.");

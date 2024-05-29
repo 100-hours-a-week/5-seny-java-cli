@@ -18,7 +18,7 @@ public class PaymentProcessRun implements Runnable{
      * @param paymentId : payment.json (가제) 에 저장되어 있는 결제 아이디
      * @param amount : 결제 금액
      */
-    public  PaymentProcessRun(String cardNumber, int paymentId, int amount) {
+    public  PaymentProcessRun(String cardNumber, int amount, int paymentId) {
         this.paymentId = paymentId;
         this.cardNumber = cardNumber;
         this.amount = amount;
@@ -33,7 +33,7 @@ public class PaymentProcessRun implements Runnable{
             System.out.println("\n카드사가 현재 점검 중입니다.");
             return;
         }
-        if (paymentInfoManager.getPaymentInfo(paymentId).getStatus()) {
+        if (paymentInfoManager.getPaymentInfo(paymentId).getStatus() == 1) { // 결제 상태 확인
             // TODO: payment.json 파일에 paymentId 를 찾아서 "정상" 처리 표기하도록 수정
             System.out.println("결제가 완료되었습니다.");
         } else {

@@ -35,15 +35,14 @@ public class PaymentInfoManager {
         }
     }
 
-    public synchronized boolean updatePaymentStatus(String paymentId, boolean status) {
+    public synchronized boolean updatePaymentStatus(int paymentId, int status) {
         for (Payment payment : payments) {
-            if (payment.getPaymentId() == Integer.parseInt(paymentId)) {
-                payment.setStatus(status);
+            if (payment.getPaymentId() == paymentId) {
+                payment.setStatus(status); // 0:결제 전 초기상태 OR 잔액부족, 1 : 결제 완료, 2 : 점검 중, 3 : 시간 초과
                 savePayments();
                 return true;
             }
         }
-        System.out.println("해당 ID의 결제 정보가 없습니다.");
         return false;
     }
 
@@ -56,23 +55,24 @@ public class PaymentInfoManager {
         return null;
     }
 
-    public synchronized void addPayment(int amount) {
+    public synchronized int addPayment(int amount) {
         // 결제 ID는 1부터 시작하며, 가장 마지막 결제 ID에 1을 더한 값으로 결정
         int newPaymentId = payments.isEmpty() ? 1 : payments.get(payments.size() - 1).getPaymentId() + 1;
         Payment newPayment = new Payment(newPaymentId, amount);
         payments.add(newPayment);
         savePayments();
+        return newPaymentId;
     }
 
     public class Payment {
         private int paymentId;
         private int amount;
-        private boolean status;
+        private int status;
 
         public Payment(int paymentId, int amount) {
             this.paymentId = paymentId;
             this.amount = amount;
-            this.status = false;
+            this.status = 0;
         }
 
         public int getPaymentId() {
@@ -83,11 +83,11 @@ public class PaymentInfoManager {
             return amount;
         }
 
-        public boolean getStatus() {
-            return status;
+        public int getStatus() {
+            return status; // 0: 초기상태(결제시도전), 1 : 결제 완료, 2 : 점검 중, 3 : 시간 초과
         }
 
-        public void setStatus(boolean status) {
+        public void setStatus(int status) {
             this.status = status;
         }
     }
