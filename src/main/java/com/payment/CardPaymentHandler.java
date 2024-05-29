@@ -37,6 +37,9 @@ public class CardPaymentHandler implements PaymentHandler {
         String cardNumber = scanner.nextLine(); // 카드 번호 입력 받기
 
         boolean result = cardService.processPayment(cardNumber, amount, paymentId); // 카드 서비스를 이용해 결제를 처리합니다.
+        System.out.println("결제 아이디22: " + paymentId); // 결제 아이디 출력
+        System.out.println("결제 결과: " + result); // 결제 결과 출력
+        System.out.println("결제 상태: " + paymentInfoManager.getPaymentInfo(paymentId).getStatus()); // 결제 상태 출력
         if (result && paymentInfoManager.getPaymentInfo(paymentId).getStatus() == 1) { // 결제가 성공하고 상태가 1(결제 완료)인 경우 - 이중체크
             System.out.println(paymentInfoManager.getPaymentInfo(paymentId).getStatus() + 1111);
             paymentProcessed.set(true); // 결제가 성공하면 결제 처리 여부를 true로 설정합니다.

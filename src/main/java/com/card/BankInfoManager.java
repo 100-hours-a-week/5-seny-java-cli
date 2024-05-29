@@ -17,16 +17,15 @@ public class BankInfoManager {
         gson = new Gson();
         loadBanks();
     }
-
     private synchronized void loadBanks() {
         try (Reader reader = new FileReader(BANK_FILE_PATH)) {
             Type bankListType = new TypeToken<List<Bank>>(){}.getType();
             banks = gson.fromJson(reader, bankListType);
         } catch (IOException e) {
             e.printStackTrace();
-            banks = null;
         }
     }
+
 
     private synchronized void saveBanks() {
         try (Writer writer = new FileWriter(BANK_FILE_PATH)) {
@@ -49,6 +48,9 @@ public class BankInfoManager {
     }
 
     public Bank getBankInfo(String bankName) {
+        if (banks == null) {
+            loadBanks();
+        }
         for (Bank bank : banks) {
             if (bank.getBankName().equals(bankName)) {
                 return bank;

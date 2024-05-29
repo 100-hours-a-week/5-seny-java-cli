@@ -37,9 +37,11 @@ public class PaymentInfoManager {
 
     public synchronized boolean updatePaymentStatus(int paymentId, int status) {
         for (Payment payment : payments) {
+            System.out.println("바꾸려는payment상태 : " + payment.getStatus() + "바꾸려는status : " + status);
             if (payment.getPaymentId() == paymentId) {
                 payment.setStatus(status); // 0:결제 전 초기상태 OR 잔액부족, 1 : 결제 완료, 2 : 점검 중, 3 : 시간 초과
                 savePayments();
+                System.out.println("바뀐payment상태 : " + payment.getStatus());
                 return true;
             }
         }
