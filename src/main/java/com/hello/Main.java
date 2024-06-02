@@ -67,7 +67,7 @@ public class Main {
                     int paymentMethod = 0;
                     if (scanner.hasNextInt()) {
                         paymentMethod = scanner.nextInt();
-                        scanner.nextLine(); // 입력 버퍼를 비웁니다.
+//                        scanner.nextLine(); // 입력 버퍼를 비웁니다.
                     }
 
                     while (paymentMethod != 1 && paymentMethod != 2) {

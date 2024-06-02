@@ -22,7 +22,7 @@ public class PaymentProcessRun implements Runnable{
      * @param paymentId : payment.json (가제) 에 저장되어 있는 결제 아이디
      * @param amount : 결제 금액
      */
-    public  PaymentProcessRun(String cardNumber, int amount, int paymentId) {
+    public PaymentProcessRun(String cardNumber, int amount, int paymentId) {
         this.paymentId = paymentId;
         this.cardNumber = cardNumber;
         this.amount = amount;
