@@ -25,20 +25,6 @@ public class CardService {
 
         paymentThread.start(); // 결제 스레드 시작
 
-         // 스레드가 인터럽트되었는지 확인
-        try {
-            paymentThread.join(10 * 1000); // 10초 동안 스레드 대기
-            if (paymentThread.isAlive()) {
-                paymentThread.interrupt(); // 스레드가 아직 실행 중이면 인터럽트
-                // 인터럽트가 발생하면 결제 실패 처리하고 메서드 종료
-                paymentInfoManager.updatePaymentStatus(paymentId, 3); // 3: 시간 초과로 상태 업데이트
-                System.out.println("\n결제 유효시간이 초과되었습니다.");
-                return false;
-            }
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
         if (bankInfoManager.getBankInfo(bankName).isMaintenance()) { // 카드사 점검 중일 경우
             System.out.println("카드사가 점검 중입니다. 잠시 후 다시 시도해주세요."); // 점검 중 메시지 출력
             paymentInfoManager.updatePaymentStatus(paymentId, 2); // 2: 점검중으로 상태 업데이트
@@ -50,9 +36,5 @@ public class CardService {
         }
         return false;
     }
-//    public boolean isMaintenance() {
-//        return bankInfoManager.getBankInfo(bankName).isMaintenance(); // 현재 점검 상태 반환
-//    }
-
 
 }
