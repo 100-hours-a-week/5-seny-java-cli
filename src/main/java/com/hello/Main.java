@@ -1,6 +1,8 @@
 package com.hello;
 
+import com.card.BankInfoManager;
 import com.card.CardService;
+import com.card.MaintenanceCycle;
 import com.order.BeverageOrderHandler;
 import com.order.HandleMenu;
 import com.order.PopcornOrderHandler;
@@ -16,9 +18,14 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) throws InterruptedException {
         Scanner scanner = new Scanner(System.in);
+        BankInfoManager bankInfoManager = new BankInfoManager();
+        Thread maintenanceThread = new Thread(new MaintenanceCycle((bankInfoManager)));
+        // 이렇게 하면 `MaintenanceCycle` 클래스가 점검 주기를 관리하는 역할을 담당
+        maintenanceThread.start(); // 카드사 점검 주기 시작
+
         try {
             Welcome welcome = new Welcome();
-            // 카드 서비스 객체 생성 및 점검 주기 시작
+            // 카드 서비스 객체 생성
             CardService cardService = new CardService();
 
             int menuSelection = welcome.run();
@@ -60,11 +67,11 @@ public class Main {
                     int paymentMethod = 0;
                     if (scanner.hasNextInt()) {
                         paymentMethod = scanner.nextInt();
-                        scanner.nextLine(); // 입력 버퍼를 비웁니다.
+//                        scanner.nextLine(); // 입력 버퍼를 비웁니다.
                     }
 
                     while (paymentMethod != 1 && paymentMethod != 2) {
-                        System.out.println("잘못된 선택입니다. 다시 선택해주세요.");
+                        System.out.println("\n잘못된 선택입니다. 다시 선택해주세요.");
                         if (scanner.hasNextInt()) {
                             paymentMethod = scanner.nextInt();
                             scanner.nextLine(); // 입력 버퍼를 비웁니다.
@@ -79,11 +86,9 @@ public class Main {
                     }
 
                     paymentSuccessful = paymentHandler.processPayment(order.getTotalPrice()); // 결제 처리
-                    System.out.println(paymentSuccessful);
-                    System.out.println("dkfjakfjdlajfl");
 
                     if (paymentSuccessful) {
-                        System.out.println("결제가 완료되었습니다.");
+                        System.out.println("이용해주셔서 감사합니다. 음식은 픽업 존에 준비되어 있습니다.");
                         System.exit(0); // 프로그램 종료
                     } else {
                         System.out.println("결제가 실패했습니다. 다시 시도해 주세요.");

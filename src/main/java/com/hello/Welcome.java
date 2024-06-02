@@ -17,7 +17,7 @@ public class Welcome {
     public static final String CYAN = "\u001B[36m";
     public static final String WHITE = "\u001B[37m";
 
-    public static final int DELAY = 300; // 밀리초 단위로 지연시간 설정 (0.4초)
+    public static final int DELAY = 000; // 밀리초 단위로 지연시간 설정 (0.3초)
 
     public int run() throws InterruptedException {
         Scanner scanner = new Scanner(System.in);
