@@ -45,24 +45,8 @@ public class CardService {
             return false; // 결제 실패
         }
 
-        CardInfoManager.Card card = cardInfoManager.getCardInfo(cardNumber); // 카드 정보 가져오기
-        if (card != null && card.getCardNumber().equals(cardNumber)) { // 카드 정보가 존재하고 카드 번호가 일치할 경우
-            int balance = card.getBalance() - amount;
-            if (balance < 0) {
-                System.out.println("잔액이 부족합니다."); // 잔액 부족 메시지 출력
-                paymentInfoManager.updatePaymentStatus(paymentId, 0); // 0: 잔액부족 결제실패
-                return false; // 결제 실패
-            }
-
-            System.out.println("결제가 완료되었습니다. 남은 잔액: " + balance + "원"); // 결제 완료 메시지 출력
-//            System.out.println("결제 아이디: " + paymentId); // 결제 아이디 출력
-            paymentInfoManager.updatePaymentStatus(paymentId, 1); // 먹혀
-            return cardInfoManager.updateCardBalance(card.getCardNumber(), amount); // 잔액 업데이트 시도
-
-        } else if (!bankInfoManager.getBankInfo(bankName).isMaintenance()) { // 카드 정보가 존재하지 않을 경우 & 점검중 아닐때만
-            System.out.println("카드정보가 존재하지 않습니다."); // 유효하지 않은 카드 메시지 출력
-            paymentInfoManager.updatePaymentStatus(paymentId, 0); // 0: 결제실패
-            return false; // 결제 실패
+        if (paymentInfoManager.getPaymentInfo(paymentId).getStatus() == 1) { // 결제가 성공하면
+            return true; // 결제 성공 반환
         }
         return false;
     }

@@ -74,6 +74,7 @@ public class BankInfoManager {
         }
 
         public boolean isMaintenance() {
+//            System.out.println("은행 점검 상태: " + maintenance);
             return maintenance;
         }
 

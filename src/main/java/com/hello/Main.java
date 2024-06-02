@@ -88,7 +88,7 @@ public class Main {
                     paymentSuccessful = paymentHandler.processPayment(order.getTotalPrice()); // 결제 처리
 
                     if (paymentSuccessful) {
-                        System.out.println("결제가 완료되었습니다.");
+                        System.out.println("이용해주셔서 감사합니다. 음식은 픽업 존에 준비되어 있습니다.");
                         System.exit(0); // 프로그램 종료
                     } else {
                         System.out.println("결제가 실패했습니다. 다시 시도해 주세요.");
