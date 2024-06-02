@@ -35,33 +35,27 @@ public class CardPaymentHandler implements PaymentHandler {
 //        bankInfoManager.getBankInfo(bankName).setMaintenance(true); // 카드사 점검 상태를 true로 설정합니다.
         paymentInfoManager.updatePaymentStatus(paymentId, 0);
 
+        // 현재시간을 기록
+        long startTime = System.currentTimeMillis();
 
         System.out.print("카드 번호를 입력하세요: ");
-//        String cardNumber = scanner.nextLine(); // 카드 번호 입력 받기
-        AtomicReference<String> cardNumber = new AtomicReference<>(); // AtomicReference 초기화
         Scanner scanner = new Scanner(System.in);
-        // 결제 스레드 생성
-        Thread inputThread = new Thread(() -> {
-            cardNumber.set(scanner.nextLine());
-        });
+        String cardNumber = scanner.nextLine(); // 카드 번호를 입력받습니다.
 
-        inputThread.start(); // 카드번호 입력 시간제한 스레드 시작
+        // 입력완료 후 시간찍고
+        long endTime = System.currentTimeMillis();
 
-        // 스레드가 인터럽트되었는지 확인
-        try {
-            inputThread.join(10 * 1000); // 10초 동안 스레드 대기
-            if (inputThread.isAlive()) {
-                inputThread.interrupt(); // 스레드가 아직 실행 중이면 인터럽트
-                // 인터럽트가 발생하면 결제 실패 처리하고 메서드 종료
-                paymentInfoManager.updatePaymentStatus(paymentId, 3); // 3: 시간 초과로 상태 업데이트
-                System.out.println("\n결제 유효시간이 초과되었습니다.");
-                return false;
-            }
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+        // 시간차를 계산 (밀리초 단위이므로 1000으로 나눠 초 단위로 변환)
+        long elapsedTime = (endTime - startTime) / 1000;
+
+        // 시간차가 10초가 넘으면 false 반환
+        if (elapsedTime > 10) {
+            System.out.println("입력시간 10초를 초과했습니다. ");
+            return false;
         }
 
-        boolean result = cardService.processPayment(cardNumber.get(), amount, paymentId); // 카드 서비스를 이용해 결제를 처리합니다.
+
+        boolean result = cardService.processPayment(cardNumber, amount, paymentId); // 카드 서비스를 이용해 결제를 처리합니다.
 //        paymentInfoManager.updatePaymentStatus(paymentId, result ? 1 : 0); // 결제 상태를 업데이트합니다.
         int status = paymentInfoManager.getPaymentInfo(paymentId).getStatus();
         if (status == 1) { // 결제가 성공하고 상태가 1(결제 완료)인 경우 - 이중체크
