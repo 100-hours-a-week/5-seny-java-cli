@@ -13,10 +13,10 @@ public class MaintenanceCycle implements Runnable {
 
     @Override
     public void run() {
-        bankInfoManager.updateBankMaintenance("국민카드", false); // 초기 상태 설정
-        bankInfoManager.updateBankMaintenance("우리카드", false); // 초기 상태 설정
         while (true) { // 무한 루프
             try {
+                bankInfoManager.updateBankMaintenance("국민카드", false); // 초기 상태 설정
+                bankInfoManager.updateBankMaintenance("우리카드", false); // 초기 상태 설정
                 Thread.sleep(MAINTENANCE_CYCLE); // 2분 대기
                 bankInfoManager.updateBankMaintenance("국민카드", true); // 점검 상태로 설정
                 bankInfoManager.updateBankMaintenance("우리카드", true); // 점검 상태로 설정

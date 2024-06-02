@@ -5,6 +5,7 @@ import com.google.gson.reflect.TypeToken;
 
 import java.io.*;
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.List;
 
 public class BankInfoManager {
@@ -19,8 +20,12 @@ public class BankInfoManager {
     }
     private synchronized void loadBanks() {
         try (Reader reader = new FileReader(BANK_FILE_PATH)) {
-            Type bankListType = new TypeToken<List<Bank>>(){}.getType();
+            Type bankListType = new TypeToken<List<Bank>>() {}.getType();
             banks = gson.fromJson(reader, bankListType);
+
+        } catch (FileNotFoundException e) {
+            System.out.println("JSON 파일을 찾을 수 없습니다. 초기화된 빈 리스트를 사용합니다.");
+            banks = new ArrayList<>();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -36,7 +41,7 @@ public class BankInfoManager {
     }
 
     public synchronized boolean updateBankMaintenance(String bankName, boolean maintenance) {
-        for (Bank bank : banks) {
+        for (Bank bank : this.banks) {
             if (bank.getBankName().equals(bankName)) {
                 bank.setMaintenance(maintenance);
                 saveBanks();
